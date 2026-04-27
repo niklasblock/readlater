@@ -4,7 +4,7 @@ from sqlalchemy.orm import Session
 from api.database import SessionLocal 
 from api.models import Link
 from datetime import date
-
+from api.scraper import fetch_title
 
 class LinkCreate(BaseModel):
     url: str
@@ -24,16 +24,18 @@ def get_db():
 
 
 @router.post("/links")
-def create_links(data: LinkCreate, db: Session = Depends(get_db)):
+async def create_links(data: LinkCreate, db: Session = Depends(get_db)):
     """Create a new Link"""
+    title = data.title
+    if not title: 
+        title = await fetch_title(data.url) 
+
     link = Link(**data.model_dump(), saved_at=date.today())
+    link.title = title 
 
     db.add(link)
-
     db.commit()
-
     db.refresh(link) 
-
     return link 
 
 @router.get("/links") 
