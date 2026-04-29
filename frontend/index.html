@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Read Later</title>
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+    <!--Hauptseite-->
+    <div>
+        <div class="header">
+            <h1>Read Later</h1>
+            <label for="tag-filter">Tag filtern:</label>
+            <input type="text" id="tag-filter" placeholder="z.B. python">
+        </div>
+        <table id="readlater-table" class="table">
+            <thead>
+                <tr>
+                    <th>Datum</th>
+                    <th>Titel</th>
+                    <th>URL</th>
+                    <th>Tags</th>
+                    <th>Notiz</th>
+                    <th>Gelesen</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody id="readlater-body"></tbody>
+        </table>
+    </div>
+
+    <script src="/static/app.js"></script>
+</body>
+</html>
