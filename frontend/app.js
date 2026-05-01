@@ -16,8 +16,7 @@ async function  loadLinks() {
                 : `<button class="status-btn unread" onclick="toggleStatus(${link.id})">ungelesen</button>`;
             row.innerHTML = `
                 <td>${link.saved_at}</td> 
-                <td>${link.title}</td>
-                <td><a href="${link.url}" target="_blank">${link.url.length > 30 ? link.url.substring(0, 30) + "..." : link.url}</a></td>
+                <td><a href="${link.url}" target="_blank">${link.title || link.url}</a></td>
                 <td>${link.tags || "—"}</td>
                 <td>${link.note || "—"}</td>
                 <td>${statusBtn}</td>
