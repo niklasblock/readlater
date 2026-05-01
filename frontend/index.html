@@ -8,11 +8,22 @@
 <body>
     <!--Hauptseite-->
     <div>
-        <div class="header">
-            <h1>Read Later</h1>
-            <label for="tag-filter">Tag filtern:</label>
-            <input type="text" id="tag-filter" placeholder="z.B. python">
+        <h1>Read Later</h1>
+        <div style="display:flex; gap:8px; margin-bottom:1rem; align-items:center;">
+            <div>
+                <label for="tag-filter">Tag filtern:</label>
+                <input type="text" id="tag-filter" placeholder="z.B. python">
+            </div>
+            <div>
+                <label for="read-filter">Status:</label>
+                <select id="read-filter">
+                    <option value="">Alle</option>
+                    <option value="unread">Ungelesen</option>
+                    <option value="read">Gelesen</option>
+                </select>
+            </div>
         </div>
+    
         <table id="readlater-table" class="table">
             <thead>
                 <tr>

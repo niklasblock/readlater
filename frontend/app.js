@@ -1,15 +1,26 @@
 async function  loadLinks() {
     try {
         const tag = document.getElementById("tag-filter").value;
-        const url = tag ? `/links?tag=${tag}` : `/links`;
+        const readFilter = document.getElementById("read-filter").value;
+
+        let url = `/links`;
+        const params = [];
+        if (tag) params.push(`tag=${tag}`);
+        if (params.length > 0) url += `?${params.join("&")}`;
+
         const response = await fetch(url);
-        const data = await response.json(); 
-    
-        console.log(data, response)
+        const data = await response.json();
+
+        // Client-seitig nach gelesen/ungelesen filtern
+        const filtered = readFilter === "read" 
+            ? data.filter(l => l.read)
+            : readFilter === "unread"
+            ? data.filter(l => !l.read)
+            : data;
 
         const tbody = document.getElementById("readlater-body"); 
         tbody.innerHTML=""; 
-        data.forEach(link => {
+        filtered.forEach(link => {
             const row = document.createElement("tr"); 
             const statusBtn = link.read
                 ? `<button class="status-btn read" onclick="toggleStatus(${link.id})">✓ gelesen</button>`
@@ -47,6 +58,9 @@ async function deleteLink(id) {
 document.addEventListener("DOMContentLoaded", () => {
     loadLinks(); 
     document.getElementById("tag-filter").addEventListener("input", () => {
+        loadLinks();
+    });
+    document.getElementById("read-filter").addEventListener("change", () => {
         loadLinks();
     });
 }); 
