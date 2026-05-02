@@ -33,3 +33,9 @@ document.getElementById("save-btn").addEventListener("click", async () => {
         status.className = "error";
     }
 });
+// URL Preview laden
+chrome.tabs.query({active: true, currentWindow: true}, ([tab]) => {
+    const preview = document.getElementById("url-preview");
+    preview.textContent = tab.url;
+    preview.title = tab.url;
+});
