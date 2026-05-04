@@ -221,3 +221,6 @@ __marimo__/
 
 # Apple 
 .DS_Store
+
+# MacOs App
+icon.iconset/

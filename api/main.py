@@ -13,7 +13,7 @@ app.include_router(links.router)
 # CORS — damit die Browser Extension zugreifen darf
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["chrome-extension://*"],
+    allow_origins=["chrome-extension://kaajdpoajkhdkdhdiognkabhklpckbii"],
     allow_methods=["POST", "GET"],
     allow_headers=["*"],
 )
